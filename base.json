@@ -23,9 +23,9 @@
             "Statement" : [ {
               "Effect" : "Allow",
               "Action" : [
-                "s3:PutObject"
+                "s3:*"
               ],
-              "Resource" : [ { "Fn::Join" : [ "", [ "arn:aws:s3:::", { "Ref" : "TemplatesBucket" } ] ] } ]
+              "Resource" : [ { "Fn::Join" : [ "", [ "arn:aws:s3:::", { "Ref" : "TemplatesBucket" }, "/*" ] ] } ]
             } ]
           }
         } ]
