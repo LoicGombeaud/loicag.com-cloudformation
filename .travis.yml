@@ -8,4 +8,4 @@ deploy:
   region: eu-west-1
   upload-dir: $TRAVIS_TAG
   on:
-    branch: master
+    tags: true
