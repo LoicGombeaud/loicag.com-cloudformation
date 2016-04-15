@@ -1,4 +1,4 @@
-script: ./bin/prepare_release.rb -v $TRAVIS_TAG -d .
+script: ./bin/prepare_release.rb -v $TRAVIS_TAG -d . && rm -rf bin/
 
 deploy:
   provider: s3
