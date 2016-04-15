@@ -1,0 +1,68 @@
+{
+
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Resources" : {
+
+    "TemplatesBucket" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+        "BucketName" : "loicag-cfn-templates"
+      }
+    },
+
+    "TravisDeploymentUser" : {
+      "Type" : "AWS::IAM::User",
+      "Properties" : {
+
+      }
+    },
+
+    "TravisDeploymentAccessKey" : {
+      "Type" : "AWS::IAM::AccessKey",
+      "Properties" : {
+        "UserName" : { "Ref" : "TravisDeploymentUser" }
+      }
+    },
+
+    "VPC" : {
+      "Type" : "AWS::EC2::VPC",
+      "Properties" : {
+        "CidrBlock" : "10.0.0.0/16",
+        "EnableDnsHostnames" : "true"
+      }
+    },
+
+    "SubnetA" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "CidrBlock" : "10.0.0.0/24",
+        "VpcId" : { "Ref" : "VPC" }
+      }
+    },
+
+    "SubnetB" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "CidrBlock" : "10.0.1.0/24",
+        "VpcId" : { "Ref" : "VPC" }
+      }
+    }
+
+  },
+
+  "Outputs" : {
+
+    "TravisDeploymentAccessKey" : {
+      "Description" : "Travis deployment access key ID",
+      "Value" : { "Ref" : "TravisDeploymentAccessKey" }
+    },
+
+    "TravisDeploymentSecretKey" : {
+      "Description" : "Travis deployment secret access key",
+      "Value" : { "Fn::GetAtt" : [ "TravisDeploymentAccessKey", "SecretAccessKey" ] }
+    }
+
+  }
+
+}
