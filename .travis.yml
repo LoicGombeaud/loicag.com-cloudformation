@@ -1,4 +1,4 @@
-script: pwd
+script: ./bin/prepare_release.rb -v $TRAVIS_TAG -d .
 
 deploy:
   provider: s3
@@ -7,5 +7,6 @@ deploy:
   bucket: $TEMPLATES_BUCKET
   region: eu-west-1
   upload-dir: $TRAVIS_TAG
+  skip_cleanup: true
   on:
     tags: true
