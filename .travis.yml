@@ -1,4 +1,6 @@
-script: >
+script: pwd
+
+before_deploy: >
   ./bin/process_templates.rb
   -v $TRAVIS_TAG
   -d .
