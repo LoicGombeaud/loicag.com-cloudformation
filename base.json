@@ -47,6 +47,18 @@
       }
     },
 
+    "InternetGateway" : {
+      "Type" : "AWS::EC2::InternetGateway"
+    },
+
+    "VPCGatewayAttachement" : {
+      "Type" : "AWS::EC2::VPCGatewayAttachement",
+      "Properties" : {
+        "InternetGatewayId" : { "Ref" : "InternetGateway" },
+        "VpcId" : { "Ref" : "VPC" }
+      }
+    },
+
     "SubnetA" : {
       "Type" : "AWS::EC2::Subnet",
       "Properties" : {
