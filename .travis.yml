@@ -1,4 +1,10 @@
-script: ./bin/prepare_release.rb -v $TRAVIS_TAG -d . && rm -rf bin/
+script: >
+  ./bin/process_templates.rb
+  -v $TRAVIS_TAG
+  -d .
+  -r $AWS_REGION
+  -b $TEMPLATES_BUCKET
+  && rm -rf bin/
 
 deploy:
   provider: s3
